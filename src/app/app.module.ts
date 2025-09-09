@@ -3,31 +3,38 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { HeaderComponent } from './header/header.component';
+import { Login } from './pages/login/login.component';
+import { HeaderComponent } from './components/header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RegisterComponent } from './register/register.component';
-import { DocumentsComponent } from './documents/documents.component';
-import { DocumentCardComponent } from './document-card/document-card.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { DocumentsComponent } from './components/documents/documents.component';
+import { DocumentCardComponent } from './components/document-card/document-card.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginForm } from './components/login-form/login-form.component';
+import { MaterialModule } from './material.module';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginFormComponent,
+    Login,
     HeaderComponent,
     RegisterComponent,
     DocumentsComponent,
-    DocumentCardComponent
+    DocumentCardComponent,
+    LoginForm
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
-  providers: [],
-  bootstrap: [AppComponent, LoginFormComponent]
+  providers: [CookieService],
+  bootstrap: [AppComponent, LoginForm, Login]
 })
 
 export class AppModule { }

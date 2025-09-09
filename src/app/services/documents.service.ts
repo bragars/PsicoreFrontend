@@ -1,33 +1,30 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class DocumentsService {
-  private baseUrl = 'http://your-backend-api-url';
+  constructor(private api: ApiService) { }
 
-  constructor(private http: HttpClient) { }
-
-  createDocument(documentData: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/documents`, documentData);
+  createDocument(documentData: any) {
+    return this.api.post(`/api/v1/documents`, documentData);
   }
 
-  getDocument(documentId: string): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/documents/${documentId}`);
+  getDocument(documentId: string) {
+    return this.api.get(`/api/v1/documents/${documentId}`);
   }
 
-  getAllDocuments(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/documents`);
+  getAllDocuments() {
+    return this.api.get(`/api/v1/documents`);
   }
 
-  updateDocument(documentId: string, documentData: any): Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/documents/${documentId}`, documentData);
+  updateDocument(documentId: string, documentData: any) {
+    return this.api.put(`/api/v1/documents/${documentId}`, documentData);
   }
 
-  deleteDocument(documentId: string): Observable<any> {
-    return this.http.delete<any>(`${this.baseUrl}/documents/${documentId}`);
+  deleteDocument(documentId: string) {
+    return this.api.delete(`/api/v1/documents/${documentId}`);
   }
 }

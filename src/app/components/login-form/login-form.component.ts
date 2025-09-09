@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DataService } from '../services/dataService';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-login-form',
@@ -8,11 +8,11 @@ import { DataService } from '../services/dataService';
   styleUrls: ['./login-form.component.scss']
 })
 
-export class LoginFormComponent implements OnInit {
-  data: any; // Or any other type that matches your data structure
+export class LoginForm implements OnInit {
+  data: any;
   loginForm!: FormGroup;
 
-  constructor(private dataService: DataService, private formBuilder: FormBuilder) { }
+  constructor(private dataService: AuthenticationService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -31,10 +31,10 @@ export class LoginFormComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      const email = this.loginForm.value.email;
+      const username = this.loginForm.value.email;
       const password = this.loginForm.value.password;
 
-      this.dataService.userAuth({email, password}).subscribe((response) => {
+      this.dataService.login({ username, password }).subscribe((response) => {
         console.log(response);
         this.data = response;
       });
