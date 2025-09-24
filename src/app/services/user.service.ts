@@ -32,7 +32,6 @@ export class UserService {
         return this.api.delete(`/api/v1/patients/${userId}`);
     }
 
-    // Patient
     createPatient(userData: any) {
         return this.api.post(`/api/v1/patients`, userData);
     }
@@ -53,7 +52,6 @@ export class UserService {
         return this.api.delete(`/api/v1/patients/${userId}`);
     }
 
-    // Therapist
     createTherapist(userData: any) {
         return this.api.post(`/api/v1/therapists`, userData);
     }

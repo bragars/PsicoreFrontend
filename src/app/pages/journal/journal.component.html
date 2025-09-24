@@ -1,0 +1,45 @@
+<div class="journal-container">
+  <mat-card class="entry-card">
+    <mat-card-header>
+      <mat-card-title>New Journal Entry</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="journalForm" (ngSubmit)="addEntry()">
+        <mat-form-field appearance="outline">
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="title" placeholder="A new beginning..." />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Content</mat-label>
+          <textarea matInput formControlName="content" rows="6" placeholder="Write your thoughts..."></textarea>
+        </mat-form-field>
+        
+        <button mat-flat-button color="primary" type="submit" [disabled]="journalForm.invalid">
+          Save Entry
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="previous-entries">
+    <h2>Previous Entries</h2>
+    <mat-accordion>
+      @for (entry of journalEntries(); track entry.date) {
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ entry.title }}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{ entry.date | date:'medium' }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>{{ entry.content }}</p>
+        </mat-expansion-panel>
+      } @empty {
+        <p class="no-entries">You haven't written any entries yet.</p>
+      }
+    </mat-accordion>
+  </div>
+</div>

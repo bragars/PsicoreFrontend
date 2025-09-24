@@ -1,0 +1,36 @@
+<div class="about-container">
+  <div class="hero">
+    <h1>About Our Practice</h1>
+    <p>Dedicated to providing compassionate and effective mental health care since {{ foundingYear }}.</p>
+  </div>
+
+  <mat-card class="section-card">
+    <mat-card-header>
+      <mat-icon mat-card-avatar>rocket_launch</mat-icon>
+      <mat-card-title>Our Mission</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        Our mission is to empower individuals and families to navigate life's challenges with resilience and confidence. We believe in a personalized approach, creating a safe and supportive environment for growth and healing.
+      </p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="section-card">
+    <mat-card-header>
+      <mat-icon mat-card-avatar>groups</mat-icon>
+      <mat-card-title>Meet Our Team</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list role="list">
+        @for (member of teamMembers; track member.id) {
+          <mat-list-item role="listitem">
+            <img matListItemAvatar [src]="member.avatarUrl" [alt]="member.name">
+            <h3 matListItemTitle>{{ member.name }}</h3>
+            <p matListItemLine>{{ member.role }}</p>
+          </mat-list-item>
+        }
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>

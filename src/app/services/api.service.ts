@@ -1,8 +1,7 @@
-// src/app/services/api.service.ts
 import { Injectable, inject } from '@angular/core';
-import axios, { AxiosInstance } from 'axios';
 import { CookieService } from 'ngx-cookie-service';
 import { from, map, Observable } from 'rxjs';
+import axios, { AxiosInstance } from 'axios';
 
 @Injectable({
     providedIn: 'root'
@@ -43,8 +42,8 @@ export class ApiService {
         });
     }
 
-    get<T>(url: string, config?: any) {
-        return this.axiosInstance.get<T>(url, config);
+    get<T>(url: string, config?: any): Observable<T> {
+        return from(this.axiosInstance.get<T>(url, config)).pipe(map(res => res.data));
     }
 
     post<T>(url: string, data?: any, config?: any) {
@@ -59,7 +58,7 @@ export class ApiService {
         return this.axiosInstance.delete<T>(url, config);
     }
 
-    // login
+    // login and register
     postNoAuth<T>(data?: any, config?: any): Observable<T> {
         return from(this.axiosNoAuth.post<T>(data, config)).pipe(map(res => res.data));
     }

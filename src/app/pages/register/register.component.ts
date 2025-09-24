@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { MaterialModule } from 'src/app/material.module';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-register',
+  standalone: true,
+  imports: [MaterialModule, ReactiveFormsModule, RouterLink],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
@@ -24,17 +28,16 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     if (this.registerForm.invalid) {
-      // Form is invalid, handle the error or display a message
       return;
     }
 
     const formData = this.registerForm.value;
     console.log(formData);
-    // const email = formData.email;
+    const email = formData.email;
     const password = formData.password;
     const username = formData.username;
 
-    this.dataService.register({ username, password }).subscribe((response) => {
+    this.dataService.register({ email, username, password }).subscribe((response) => {
       console.log(response);
     });
   }
