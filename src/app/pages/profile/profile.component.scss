@@ -1,0 +1,27 @@
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.profile-card {
+  max-width: 500px;
+  width: 100%;
+}
+
+img[mat-card-avatar] {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.bio {
+  margin-top: 1rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+mat-list-item span {
+  margin-left: 10px;
+}

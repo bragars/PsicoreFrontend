@@ -1,0 +1,9 @@
+<h2>Recommended For You</h2>
+<mat-list role="list">
+  @for(item of recommendations; track item.title) {
+    <mat-list-item role="listitem">
+      <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+      <p matListItemTitle>{{ item.title }}</p>
+    </mat-list-item>
+  }
+</mat-list>

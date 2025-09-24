@@ -1,0 +1,27 @@
+.sessions-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.calendar-card {
+  max-width: 400px;
+  width: 100%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.selection-info {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+  text-align: center;
+
+  p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0.5rem 0 1rem;
+  }
+}

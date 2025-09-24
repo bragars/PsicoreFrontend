@@ -2,38 +2,32 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Session } from '../models/session.model';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class SessionsService {
-  private baseUrl = 'http://your-backend-api-url';
+  constructor(private api: ApiService) { }
 
-  constructor(private http: HttpClient) { }
-
-  createSession(session: Session): Observable<Session> {
-    const url = `${this.baseUrl}/sessions`;
-    return this.http.post<Session>(url, session);
+  createSession(session: Session) {
+    return this.api.post<Session>('api/v1/sessions', session);
   }
 
-  getSessionById(id: number): Observable<Session> {
-    const url = `${this.baseUrl}/sessions/${id}`;
-    return this.http.get<Session>(url);
+  getSessionById(id: number) {
+    return this.api.get<Session>('api/v1/sessions');
   }
 
-  updateSession(session: Session): Observable<Session> {
-    const url = `${this.baseUrl}/sessions/${session.id}`;
-    return this.http.put<Session>(url, session);
+  updateSession(session: Session) {
+    return this.api.put<Session>('api/v1/sessions', session);
   }
 
-  deleteSessionById(id: number): Observable<void> {
-    const url = `${this.baseUrl}/sessions/${id}`;
-    return this.http.delete<void>(url);
+  deleteSessionById(id: number) {
+    return this.api.delete<void>('api/v1/sessions');
   }
 
   getAllSessions(): Observable<Session[]> {
-    const url = `${this.baseUrl}/sessions`;
-    return this.http.get<Session[]>(url);
+    return this.api.get<Session[]>('api/v1/sessions');
   }
 }

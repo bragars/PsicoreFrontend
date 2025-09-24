@@ -1,0 +1,18 @@
+.actions-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.action-card {
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+}
+.mat-mdc-card-avatar {
+  font-size: 36px;
+  width: 36px;
+  height: 36px;
+}

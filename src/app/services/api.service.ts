@@ -58,7 +58,7 @@ export class ApiService {
         return this.axiosInstance.delete<T>(url, config);
     }
 
-    // login
+    // login and register
     postNoAuth<T>(data?: any, config?: any): Observable<T> {
         return from(this.axiosNoAuth.post<T>(data, config)).pipe(map(res => res.data));
     }

@@ -2,37 +2,31 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Note } from '../models/note.model'; // Replace with your note model if needed
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotesService {
-  private baseUrl = 'http://your-backend-api-url'; // Replace with your backend API base URL
+  constructor(private api: ApiService) { }
 
-  constructor(private http: HttpClient) { }
-
-  createNote(note: Note): Observable<Note> {
-    const url = `${this.baseUrl}/notes`;
-    return this.http.post<Note>(url, note);
+  createNote(note: Note) {
+    return this.api.post<Note>('api/v1/notes', note);
   }
 
-  getNoteById(id: number): Observable<Note> {
-    const url = `${this.baseUrl}/notes/${id}`;
-    return this.http.get<Note>(url);
+  getNoteById(id: number) {
+    return this.api.get<Note>(`api/v1/notes/${id}`);
   }
 
-  updateNote(note: Note): Observable<Note> {
-    const url = `${this.baseUrl}/notes/${note.id}`;
-    return this.http.put<Note>(url, note);
+  updateNote(note: Note) {
+    return this.api.put<Note>('api/v1/notes', note);
   }
 
-  deleteNoteById(id: number): Observable<void> {
-    const url = `${this.baseUrl}/notes/${id}`;
-    return this.http.delete<void>(url);
+  deleteNoteById(id: number) {
+    return this.api.delete<void>(`api/v1/notes/${id}`);
   }
 
-  getAllNotes(): Observable<Note[]> {
-    const url = `${this.baseUrl}/notes`;
-    return this.http.get<Note[]>(url);
+  getAllNotes() {
+    return this.api.get<Note[]>('api/v1/notes');
   }
 }

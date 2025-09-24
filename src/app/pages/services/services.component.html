@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>Our Therapists</h1>
+  <p>Find the professional that is right for you.</p>
+
+  <div class="therapist-grid">
+    @for (therapist of therapists(); track therapist.id) {
+      <mat-card class="therapist-card">
+        <mat-card-header>
+          <!-- <img mat-card-avatar [src]="therapist.avatarUrl" [alt]="therapist.name"> -->
+          <mat-card-title>{{ therapist.name }}</mat-card-title>
+          <mat-card-subtitle>{{ therapist.crp }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions align="end">
+          <button mat-flat-button color="primary">
+            <a routerLink="/register">Book Session</a>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    } @empty {
+      <mat-spinner diameter="50"></mat-spinner>
+    }
+  </div>
+</div>
