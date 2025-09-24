@@ -1,1 +1,9 @@
-<p>documents works!</p>
+<ul>
+  @for (doc of documents(); track doc.id) {
+  <li>
+      <app-document-card [doc]="doc"></app-document-card>
+  </li>
+  } @empty {
+    <p>No documents found.</p>
+  }
+</ul>
